@@ -1,0 +1,10 @@
+.*.sw[pon]
+.AppleDouble
+.byebug_history
+.rvmrc
+.yard*
+Gemfile.lock
+coverage
+errors.lst
+pkg
+tags

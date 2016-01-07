@@ -3,7 +3,10 @@ end
 
 require 'mize/version'
 require 'mize/memoize'
+require 'mize/configure'
+require 'mize/global_clear'
+require 'mize/railtie' if defined? Rails
 
 class ::Module
-  include Mize::Memoize
+  prepend Mize::Memoize
 end

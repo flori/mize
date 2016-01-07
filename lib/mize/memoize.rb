@@ -1,60 +1,61 @@
 require 'mize/cache_methods'
+require 'mize/reload'
 
 module Mize
   module Memoize
-    # Automatically memoize calls of the the methods +method_ids+. The
-    # memoized results do NOT ONLY depend on the arguments, but ALSO on the
-    # object the method is called on.
-    def memoize_method(*method_ids)
-      opts = method_ids.last.respond_to?(:to_hash) ? method_ids.pop.to_hash : {}
-
-      include CacheMethods
-      method_ids.each do |method_id|
-        method_id = method_id.to_s.to_sym
-        memoize_apply_visibility method_id do
-          orig_method = instance_method(method_id)
-          __send__(:define_method, method_id) do |*args|
-            mc = __memoize_cache__
-            if mc.key?(method_id) and result = mc[method_id][args]
-              result
-            else
-              (mc[method_id] ||= {})[args] = result = orig_method.bind(self).call(*args)
-              $DEBUG and warn "#{self.class} cached method #{method_id}(#{args.inspect unless args.empty?}) = #{result.inspect} [#{__id__}]"
-              opts[:freeze] and result.freeze
-            end
-            result
-          end
-        end
-      end
-      method_ids.size == 1 ? method_ids.first : method_ids
-    end
-
     include CacheMethods
 
-    # Automatically memoize calls of the functions +function_ids+. The
-    # memoized result does ONLY depend on the arguments given to the
-    # function.
-    def memoize_function(*function_ids)
-      opts = function_ids.last.respond_to?(:to_hash) ? method_ids.pop.to_hash : {}
+    # Memoize either a +method+ or a +function+. In the former case the
+    # memoized results do NOT ONLY depend on the arguments, but ALSO on the
+    # object the method is called on. In the latter the memoized results ONLY
+    # depend on the arguments given to the function. If the +freeze+ argument
+    # is true, the result is frozen if possible to make it immutable.
+    def memoize(method: nil, function: nil, freeze: false)
+      if method && function
+        raise ArgumentError, 'memoize a method xor a function'
+      elsif method
+        wrap_method method, freeze: freeze
+      elsif function
+        wrap_method function, function: true, freeze: freeze
+      else
+        raise ArgumentError, 'missing keyword: method/function'
+      end
+    end
 
-      mc = __memoize_cache__
-      function_ids.each do |function_id|
-        function_id = function_id.to_s.to_sym
-        memoize_apply_visibility function_id do
-          orig_function = instance_method(function_id)
-          __send__(:define_method, function_id) do |*args|
-            if mc.key?(function_id) and result = mc[function_id][args]
-              result
-            else
-              (mc[function_id] ||= {})[args] = result = orig_function.bind(self).call(*args)
-              opts[:freeze] and result.freeze
-              $DEBUG and warn "#{self.class} cached function #{function_id}(#{args.inspect unless args.empty?}) = #{result.inspect}"
-            end
+    private
+
+    def wrap_method(method_id, freeze: false, function: false)
+      include CacheMethods
+
+      mc = __mize_cache__
+
+      unless function
+        prepend Mize::Reload
+      end
+
+      method_id = method_id.to_s.to_sym
+      memoize_apply_visibility method_id do
+        orig_method = instance_method(method_id)
+        __send__(:define_method, method_id) do |*args|
+          function or mc = __mize_cache__
+          Mize.__send__ :track_cache, mc.__id__
+          key = build_key(method_id, *args)
+          if mc.exist?(key) and result = mc.read(key)
             result
+          else
+            result = orig_method.bind(self).call(*args)
+            mc.write(key, result)
+            if $DEBUG
+              warn "#{self.class} cached method "\
+                "#{method_id}(#{args.inspect unless args.empty?}) = "\
+                "#{result.inspect} [#{__id__}]"
+            end
+            freeze and result.freeze rescue result
           end
+          result
         end
       end
-      function_ids.size == 1 ? function_ids.first : function_ids
+      method_id
     end
   end
 end

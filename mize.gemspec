@@ -8,17 +8,18 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Florian Frank"]
-  s.date = "2016-01-07"
+  s.date = "2016-01-28"
   s.description = "Library that provides memoziation for methods and functions for Ruby."
   s.email = "flori@ping.de"
-  s.extra_rdoc_files = ["README.md", "lib/mize.rb", "lib/mize/cache_methods.rb", "lib/mize/memoize_method.rb", "lib/mize/version.rb"]
-  s.files = [".gitignore", ".utilsrc", "Gemfile", "README.md", "Rakefile", "VERSION", "config/broken_config.yml", "config/config.yml", "lib/mize.rb", "lib/mize/cache_methods.rb", "lib/mize/memoize_method.rb", "lib/mize/version.rb", "mize.gemspec", "spec/mize/memoize_method_spec.rb", "spec/mize/version_spec.rb", "spec/spec_helper.rb"]
+  s.extra_rdoc_files = ["README.md", "lib/mize.rb", "lib/mize/cache_methods.rb", "lib/mize/cache_protocol.rb", "lib/mize/configure.rb", "lib/mize/default_cache.rb", "lib/mize/global_clear.rb", "lib/mize/memoize.rb", "lib/mize/railtie.rb", "lib/mize/reload.rb", "lib/mize/version.rb"]
+  s.files = [".gitignore", ".rspec", ".travis.yml", ".utilsrc", "Gemfile", "README.md", "Rakefile", "VERSION", "config/broken_config.yml", "config/config.yml", "lib/mize.rb", "lib/mize/cache_methods.rb", "lib/mize/cache_protocol.rb", "lib/mize/configure.rb", "lib/mize/default_cache.rb", "lib/mize/global_clear.rb", "lib/mize/memoize.rb", "lib/mize/railtie.rb", "lib/mize/reload.rb", "lib/mize/version.rb", "mize.gemspec", "spec/mize/global_clear_spec.rb", "spec/mize/memoize_method_spec.rb", "spec/mize/memoize_reload_spec.rb", "spec/mize/version_spec.rb", "spec/spec_helper.rb"]
   s.homepage = "http://flori.github.com/mize"
   s.licenses = ["MIT"]
   s.rdoc_options = ["--title", "Mize - Library that provides memoziation for methods and functions", "--main", "README.md"]
+  s.required_ruby_version = Gem::Requirement.new(">= 2")
   s.rubygems_version = "2.5.1"
   s.summary = "Library that provides memoziation for methods and functions"
-  s.test_files = ["spec/mize/memoize_method_spec.rb", "spec/mize/version_spec.rb", "spec/spec_helper.rb"]
+  s.test_files = ["spec/mize/global_clear_spec.rb", "spec/mize/memoize_method_spec.rb", "spec/mize/memoize_reload_spec.rb", "spec/mize/version_spec.rb", "spec/spec_helper.rb"]
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

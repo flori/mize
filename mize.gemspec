@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
-# stub: mize 0.0.0 ruby lib
+# stub: mize 0.0.1 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "mize"
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Florian Frank"]
-  s.date = "2016-01-28"
+  s.date = "2016-02-02"
   s.description = "Library that provides memoziation for methods and functions for Ruby."
   s.email = "flori@ping.de"
   s.extra_rdoc_files = ["README.md", "lib/mize.rb", "lib/mize/cache_methods.rb", "lib/mize/cache_protocol.rb", "lib/mize/configure.rb", "lib/mize/default_cache.rb", "lib/mize/global_clear.rb", "lib/mize/memoize.rb", "lib/mize/railtie.rb", "lib/mize/reload.rb", "lib/mize/version.rb"]

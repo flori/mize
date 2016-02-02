@@ -20,6 +20,7 @@ module Mize
             cache = ObjectSpace._id2ref id
           rescue RangeError
           end
+          cache.conform_to?(Mize::CacheProtocol) or cache = nil
           yield id, cache
         end
       end

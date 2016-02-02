@@ -8,6 +8,15 @@ module Mize::CacheMethods
     self
   end
 
+  # Clear all cached results for the method/function +name+.
+  def mize_cache_clear_name(name)
+    name = build_key_prefix(name)
+    __mize_cache__.each_name do |n|
+      n =~ %r{\A#{name}/} and __mize_cache__.delete(n)
+    end
+    self
+  end
+
   private
 
   # Set the cache object to +cache+.

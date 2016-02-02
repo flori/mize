@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-# stub: mize 0.0.2 ruby lib
+# stub: mize 0.1.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "mize"
-  s.version = "0.0.2"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]

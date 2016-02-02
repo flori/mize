@@ -31,5 +31,5 @@ class Mize::DefaultCache < Hash
 
   alias prototype dup
 
-#  conform_to Mize::CacheProtocol
+  conform_to Mize::CacheProtocol
 end

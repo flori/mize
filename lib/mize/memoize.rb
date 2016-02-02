@@ -27,7 +27,7 @@ module Mize
     def wrap_method(method_id, freeze: false, function: false)
       include CacheMethods
 
-      mc = __mize_cache__
+      function and mc = __mize_cache__
 
       unless function
         prepend Mize::Reload
@@ -38,7 +38,6 @@ module Mize
         orig_method = instance_method(method_id)
         __send__(:define_method, method_id) do |*args|
           function or mc = __mize_cache__
-          Mize.__send__ :track_cache, mc.__id__
           key = build_key(method_id, *args)
           if mc.exist?(key) and result = mc.read(key)
             result

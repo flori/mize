@@ -2,10 +2,11 @@ require 'spec_helper'
 
 class FooBar
   def self.reset
-    @@foo = nil
-    @@bar = nil
-    @@baz = nil
-    mize_cache_clear
+    @@foo     = nil
+    @@footsie = nil
+    @@bar     = nil
+    @@baz     = nil
+    Mize.cache_clear
   end
 
   def foo(*a)
@@ -90,6 +91,16 @@ describe Mize do
       expect(fb1.__send__(:__mize_cache__)).not_to be_empty
       expect(fb2.__send__(:__mize_cache__)).not_to be_empty
     end
+
+    it 'can clear caches for a single method' do
+      expect(fb1.__send__(:__mize_cache__)).to be_empty
+      expect(fb1.__send__(:footsie, 1, 2)).to eq 1
+      expect(fb1.foo(1)).to eq 1
+      fb1.mize_cache_clear_name :foo
+      expect(fb1.__send__(:__mize_cache__)).not_to be_empty
+      expect(fb1.__send__(:footsie, 1, 2)).to eq 1
+      expect(fb1.__send__(:foo, 1, 2)).to eq 2
+    end
   end
 
   context 'memoize function' do
@@ -119,6 +130,16 @@ describe Mize do
       expect(fb1.__send__(:baz, 1, 2)).to eq 3
       expect(fb2.__send__(:baz, 1, 2)).to eq 3
       expect(FooBar.__send__(:__mize_cache__)).not_to be_empty
+    end
+
+    it 'can clear caches for a single function' do
+      expect(FooBar.__send__(:__mize_cache__)).to be_empty
+      expect(fb1.__send__(:baz, 1, 2)).to eq 1
+      expect(fb1.bar(1)).to eq 1
+      fb1.mize_cache_clear_name :bar
+      expect(FooBar.__send__(:__mize_cache__)).not_to be_empty
+      expect(fb1.__send__(:baz, 1, 2)).to eq 1
+      expect(fb1.__send__(:bar, 1, 2)).to eq 2
     end
   end
 end

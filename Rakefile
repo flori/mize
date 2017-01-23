@@ -22,7 +22,6 @@ GemHadar do
   development_dependency 'simplecov'
   development_dependency 'rspec'
   development_dependency 'yard'
-  development_dependency 'byebug'
 
   required_ruby_version '>= 2'
 end

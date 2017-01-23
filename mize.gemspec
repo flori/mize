@@ -30,7 +30,6 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<simplecov>.freeze, [">= 0"])
       s.add_development_dependency(%q<rspec>.freeze, [">= 0"])
       s.add_development_dependency(%q<yard>.freeze, [">= 0"])
-      s.add_development_dependency(%q<byebug>.freeze, [">= 0"])
       s.add_runtime_dependency(%q<protocol>.freeze, [">= 0"])
     else
       s.add_dependency(%q<gem_hadar>.freeze, ["~> 1.3.1"])
@@ -38,7 +37,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<simplecov>.freeze, [">= 0"])
       s.add_dependency(%q<rspec>.freeze, [">= 0"])
       s.add_dependency(%q<yard>.freeze, [">= 0"])
-      s.add_dependency(%q<byebug>.freeze, [">= 0"])
       s.add_dependency(%q<protocol>.freeze, [">= 0"])
     end
   else
@@ -47,7 +45,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<simplecov>.freeze, [">= 0"])
     s.add_dependency(%q<rspec>.freeze, [">= 0"])
     s.add_dependency(%q<yard>.freeze, [">= 0"])
-    s.add_dependency(%q<byebug>.freeze, [">= 0"])
     s.add_dependency(%q<protocol>.freeze, [">= 0"])
   end
 end

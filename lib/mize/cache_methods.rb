@@ -27,7 +27,7 @@ module Mize::CacheMethods
 
   # Return the cache object.
   def __mize_cache__
-    if @__mize_cache__
+    if defined?(@__mize_cache__)
       @__mize_cache__
     else
       self.__mize_cache__ = Mize.default_cache.prototype

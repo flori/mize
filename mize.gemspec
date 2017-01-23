@@ -2,52 +2,52 @@
 # stub: mize 0.2.0 ruby lib
 
 Gem::Specification.new do |s|
-  s.name = "mize"
+  s.name = "mize".freeze
   s.version = "0.2.0"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.require_paths = ["lib"]
-  s.authors = ["Florian Frank"]
-  s.date = "2016-02-02"
-  s.description = "Library that provides memoziation for methods and functions for Ruby."
-  s.email = "flori@ping.de"
-  s.extra_rdoc_files = ["README.md", "lib/mize.rb", "lib/mize/cache_methods.rb", "lib/mize/cache_protocol.rb", "lib/mize/configure.rb", "lib/mize/default_cache.rb", "lib/mize/global_clear.rb", "lib/mize/memoize.rb", "lib/mize/railtie.rb", "lib/mize/reload.rb", "lib/mize/version.rb"]
-  s.files = [".gitignore", ".rspec", ".travis.yml", ".utilsrc", "Gemfile", "README.md", "Rakefile", "VERSION", "config/broken_config.yml", "config/config.yml", "lib/mize.rb", "lib/mize/cache_methods.rb", "lib/mize/cache_protocol.rb", "lib/mize/configure.rb", "lib/mize/default_cache.rb", "lib/mize/global_clear.rb", "lib/mize/memoize.rb", "lib/mize/railtie.rb", "lib/mize/reload.rb", "lib/mize/version.rb", "mize.gemspec", "spec/mize/global_clear_spec.rb", "spec/mize/memoize_method_spec.rb", "spec/mize/memoize_reload_spec.rb", "spec/mize/version_spec.rb", "spec/spec_helper.rb"]
-  s.homepage = "http://flori.github.com/mize"
-  s.licenses = ["MIT"]
-  s.rdoc_options = ["--title", "Mize - Library that provides memoziation for methods and functions", "--main", "README.md"]
-  s.required_ruby_version = Gem::Requirement.new(">= 2")
-  s.rubygems_version = "2.5.1"
-  s.summary = "Library that provides memoziation for methods and functions"
-  s.test_files = ["spec/mize/global_clear_spec.rb", "spec/mize/memoize_method_spec.rb", "spec/mize/memoize_reload_spec.rb", "spec/mize/version_spec.rb", "spec/spec_helper.rb"]
+  s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib".freeze]
+  s.authors = ["Florian Frank".freeze]
+  s.date = "2017-01-23"
+  s.description = "Library that provides memoziation for methods and functions for Ruby.".freeze
+  s.email = "flori@ping.de".freeze
+  s.extra_rdoc_files = ["README.md".freeze, "lib/mize.rb".freeze, "lib/mize/cache_methods.rb".freeze, "lib/mize/cache_protocol.rb".freeze, "lib/mize/configure.rb".freeze, "lib/mize/default_cache.rb".freeze, "lib/mize/global_clear.rb".freeze, "lib/mize/memoize.rb".freeze, "lib/mize/railtie.rb".freeze, "lib/mize/reload.rb".freeze, "lib/mize/version.rb".freeze]
+  s.files = [".gitignore".freeze, ".rspec".freeze, ".travis.yml".freeze, ".utilsrc".freeze, "Gemfile".freeze, "README.md".freeze, "Rakefile".freeze, "VERSION".freeze, "config/broken_config.yml".freeze, "config/config.yml".freeze, "lib/mize.rb".freeze, "lib/mize/cache_methods.rb".freeze, "lib/mize/cache_protocol.rb".freeze, "lib/mize/configure.rb".freeze, "lib/mize/default_cache.rb".freeze, "lib/mize/global_clear.rb".freeze, "lib/mize/memoize.rb".freeze, "lib/mize/railtie.rb".freeze, "lib/mize/reload.rb".freeze, "lib/mize/version.rb".freeze, "mize.gemspec".freeze, "spec/mize/global_clear_spec.rb".freeze, "spec/mize/memoize_method_spec.rb".freeze, "spec/mize/memoize_reload_spec.rb".freeze, "spec/mize/version_spec.rb".freeze, "spec/spec_helper.rb".freeze]
+  s.homepage = "http://flori.github.com/mize".freeze
+  s.licenses = ["MIT".freeze]
+  s.rdoc_options = ["--title".freeze, "Mize - Library that provides memoziation for methods and functions".freeze, "--main".freeze, "README.md".freeze]
+  s.required_ruby_version = Gem::Requirement.new(">= 2".freeze)
+  s.rubygems_version = "2.6.8".freeze
+  s.summary = "Library that provides memoziation for methods and functions".freeze
+  s.test_files = ["spec/mize/global_clear_spec.rb".freeze, "spec/mize/memoize_method_spec.rb".freeze, "spec/mize/memoize_reload_spec.rb".freeze, "spec/mize/version_spec.rb".freeze, "spec/spec_helper.rb".freeze]
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<gem_hadar>, ["~> 1.3.1"])
-      s.add_development_dependency(%q<rake>, [">= 0"])
-      s.add_development_dependency(%q<simplecov>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<yard>, [">= 0"])
-      s.add_development_dependency(%q<byebug>, [">= 0"])
-      s.add_runtime_dependency(%q<protocol>, [">= 0"])
+      s.add_development_dependency(%q<gem_hadar>.freeze, ["~> 1.3.1"])
+      s.add_development_dependency(%q<rake>.freeze, [">= 0"])
+      s.add_development_dependency(%q<simplecov>.freeze, [">= 0"])
+      s.add_development_dependency(%q<rspec>.freeze, [">= 0"])
+      s.add_development_dependency(%q<yard>.freeze, [">= 0"])
+      s.add_development_dependency(%q<byebug>.freeze, [">= 0"])
+      s.add_runtime_dependency(%q<protocol>.freeze, [">= 0"])
     else
-      s.add_dependency(%q<gem_hadar>, ["~> 1.3.1"])
-      s.add_dependency(%q<rake>, [">= 0"])
-      s.add_dependency(%q<simplecov>, [">= 0"])
-      s.add_dependency(%q<rspec>, [">= 0"])
-      s.add_dependency(%q<yard>, [">= 0"])
-      s.add_dependency(%q<byebug>, [">= 0"])
-      s.add_dependency(%q<protocol>, [">= 0"])
+      s.add_dependency(%q<gem_hadar>.freeze, ["~> 1.3.1"])
+      s.add_dependency(%q<rake>.freeze, [">= 0"])
+      s.add_dependency(%q<simplecov>.freeze, [">= 0"])
+      s.add_dependency(%q<rspec>.freeze, [">= 0"])
+      s.add_dependency(%q<yard>.freeze, [">= 0"])
+      s.add_dependency(%q<byebug>.freeze, [">= 0"])
+      s.add_dependency(%q<protocol>.freeze, [">= 0"])
     end
   else
-    s.add_dependency(%q<gem_hadar>, ["~> 1.3.1"])
-    s.add_dependency(%q<rake>, [">= 0"])
-    s.add_dependency(%q<simplecov>, [">= 0"])
-    s.add_dependency(%q<rspec>, [">= 0"])
-    s.add_dependency(%q<yard>, [">= 0"])
-    s.add_dependency(%q<byebug>, [">= 0"])
-    s.add_dependency(%q<protocol>, [">= 0"])
+    s.add_dependency(%q<gem_hadar>.freeze, ["~> 1.3.1"])
+    s.add_dependency(%q<rake>.freeze, [">= 0"])
+    s.add_dependency(%q<simplecov>.freeze, [">= 0"])
+    s.add_dependency(%q<rspec>.freeze, [">= 0"])
+    s.add_dependency(%q<yard>.freeze, [">= 0"])
+    s.add_dependency(%q<byebug>.freeze, [">= 0"])
+    s.add_dependency(%q<protocol>.freeze, [">= 0"])
   end
 end

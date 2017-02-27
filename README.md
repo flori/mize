@@ -2,6 +2,7 @@
 
 ## Description
 
+TODO
 
 ## Installation
 
@@ -17,12 +18,7 @@ and bundle.
 
 ## Usage
 
-### Configuration
-
-
-## Changes
-
-* 2015-12-10 Release 0.0.0
+TODO
 
 ## Download
 

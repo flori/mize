@@ -1,12 +1,24 @@
 require 'spec_helper'
 
 class FooBar
-  def self.reset
-    @@foo     = nil
-    @@footsie = nil
-    @@bar     = nil
-    @@baz     = nil
-    Mize.cache_clear
+  class << self
+    def reset
+      @@foo     = nil
+      @@footsie = nil
+      @@bar     = nil
+      @@baz     = nil
+      @@foo_nil_stored     = nil
+      @@foo_nil_not_stored = nil
+      Mize.cache_clear
+    end
+
+    def foo_nil_stored
+      @@foo_nil_stored
+    end
+
+    def foo_nil_not_stored
+      @@foo_nil_not_stored
+    end
   end
 
   def foo(*a)
@@ -27,6 +39,20 @@ class FooBar
     @@bar += 1
   end
   memoize function: :bar
+
+  def foo_nil_stored(*a)
+    @@foo_nil_stored ||= 0
+    @@foo_nil_stored += 1
+    nil
+  end
+  memoize method: :foo_nil_stored, store_nil: true
+
+  def foo_nil_not_stored(*a)
+    @@foo_nil_not_stored ||= 0
+    @@foo_nil_not_stored += 1
+    nil
+  end
+  memoize method: :foo_nil_not_stored, store_nil: false
 
   private
 
@@ -100,6 +126,27 @@ describe Mize do
       expect(fb1.__send__(:__mize_cache__)).not_to be_empty
       expect(fb1.__send__(:footsie, 1, 2)).to eq 1
       expect(fb1.__send__(:foo, 1, 2)).to eq 2
+    end
+
+    it 'can store nil' do
+      expect(fb1.__send__(:__mize_cache__)).to be_empty
+      expect(FooBar.foo_nil_stored).to be_nil
+      expect(fb1.foo_nil_stored(1, 2)).to be_nil
+      expect(fb1.__send__(:__mize_cache__)).not_to be_empty
+      expect(FooBar.foo_nil_stored).to eq 1
+      expect(fb1.foo_nil_stored(1, 2)).to be_nil
+      expect(FooBar.foo_nil_stored).to eq 1
+    end
+
+    it 'can skip storing nil' do
+      expect(fb1.__send__(:__mize_cache__)).to be_empty
+      expect(FooBar.foo_nil_not_stored).to be_nil
+      expect(fb1.foo_nil_not_stored(1, 2)).to be_nil
+      expect(fb1.__send__(:__mize_cache__)).to be_empty
+      expect(FooBar.foo_nil_not_stored).to eq 1
+      expect(fb1.foo_nil_not_stored(1, 2)).to be_nil
+      expect(fb1.__send__(:__mize_cache__)).to be_empty
+      expect(FooBar.foo_nil_not_stored).to eq 2
     end
   end
 

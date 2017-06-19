@@ -148,6 +148,26 @@ describe Mize do
       expect(fb1.__send__(:__mize_cache__)).to be_empty
       expect(FooBar.foo_nil_not_stored).to eq 2
     end
+
+    it 'only wraps once' do
+      class FooBar2
+        def foo
+        end
+      end
+      expect(FooBar2).to receive(:memoize_apply_visibility).and_call_original
+      class FooBar2
+        memoize method: :foo
+      end
+      expect(FooBar2).not_to receive(:memoize_apply_visibility)
+      class FooBar2
+        memoize method: :foo
+      end
+      expect do
+        class FooBar2
+          memoize method: :foo, store_nil: false
+        end
+      end.to raise_error(ArgumentError)
+    end
   end
 
   context 'memoize function' do

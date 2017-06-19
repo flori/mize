@@ -1,8 +1,4 @@
-require 'thread'
-
 module Mize
-  MUTEX = Mutex.new
-
   class << self
 
     # Clear all memoization caches at once.
@@ -13,7 +9,7 @@ module Mize
     private
 
     def each_cache
-      MUTEX.synchronize do
+      Mize::MUTEX.synchronize do
         for cache in ObjectSpace.each_object(Mize::CacheProtocol)
           yield cache
         end

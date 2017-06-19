@@ -1,4 +1,12 @@
+require 'thread'
+
 module Mize
+  MUTEX = Mutex.new
+
+  class << self
+    attr_accessor :wrapped
+  end
+  self.wrapped = {}
 end
 
 require 'mize/version'

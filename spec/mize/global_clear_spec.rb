@@ -14,10 +14,17 @@ class Foo
     @@foo ||= 0
     @@foo += 1
   end
-  memoize method: :foo
 end
 
 describe Mize, 'cache_clear' do
+  before do
+    Mize.wrapped.clear
+
+    class Foo
+      memoize method: :foo
+    end
+  end
+
   let(:foo) { Foo.new }
 
   describe '#cache_clear' do

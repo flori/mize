@@ -14,11 +14,15 @@ class Foo
     @@foo ||= 0
     @@foo += 1
   end
-  memoize method: :foo
 end
 
 describe Mize::Reload do
   before do
+    Mize.wrapped.clear
+
+    class Foo
+      memoize method: :foo
+    end
     Foo.reset
   end
 

@@ -13,14 +13,16 @@ module Mize
     # store_nil argument is false do not store nil results and always recompute
     # otherwise don't which is the default.
     def memoize(method: nil, function: nil, freeze: false, store_nil: true)
-      if method && function
-        raise ArgumentError, 'memoize a method xor a function'
-      elsif method
-        wrap_method method, freeze: freeze, store_nil: store_nil
-      elsif function
-        wrap_method function, function: true, freeze: freeze, store_nil: store_nil
-      else
-        raise ArgumentError, 'missing keyword: method/function'
+      Mize::MUTEX.synchronize do
+        if method && function
+          raise ArgumentError, 'memoize a method xor a function'
+        elsif method
+          wrap_method method, freeze: freeze, store_nil: store_nil
+        elsif function
+          wrap_method function, function: true, freeze: freeze, store_nil: store_nil
+        else
+          raise ArgumentError, 'missing keyword: method/function'
+        end
       end
     end
 
@@ -43,6 +45,15 @@ module Mize
 
     def wrap_method(method_id, freeze: false, function: false, store_nil: true)
       verbose, $VERBOSE = $VERBOSE, nil
+      if already_wrapped = Mize.wrapped[ [ self, method_id, function ] ]
+        if already_wrapped == [ freeze, store_nil ]
+          return method_id
+        else
+          raise ArgumentError,
+            "encountered mismatching memoize declaration within #{self} for freeze, store_nil:"\
+            " #{already_wrapped} != #{ [ freeze, store_nil ] }"
+        end
+      end
       include CacheMethods
 
       function and mc = __mize_cache__
@@ -70,6 +81,7 @@ module Mize
           end
         end
       end
+      Mize.wrapped[ [ self, method_id, function ] ] = [ freeze, store_nil ]
       method_id
     ensure
       $VERBOSE = verbose

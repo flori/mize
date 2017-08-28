@@ -31,7 +31,7 @@ module Mize
     class << self
       private
 
-      def compute_result(orig_method, key, context, args, freeze)
+      def compute_result(method_id, orig_method, key, context, args, freeze)
         result = orig_method.bind(context).call(*args)
         if $DEBUG
           warn "#{context.class} cached method "\
@@ -72,7 +72,7 @@ module Mize
             mc.read(key)
           else
             result = Mize::Memoize.send(
-              :compute_result, orig_method, key, self, args, freeze
+              :compute_result, method_id, orig_method, key, self, args, freeze
             )
             if store_nil || !result.nil?
               mc.write(key, result)

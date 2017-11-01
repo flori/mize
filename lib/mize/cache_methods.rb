@@ -12,7 +12,7 @@ module Mize::CacheMethods
   def mize_cache_clear_name(name)
     name = build_key_prefix(name)
     __mize_cache__.each_name do |n|
-      n =~ %r{\A#{name}/} and __mize_cache__.delete(n)
+      n =~ %r{\A#{Regexp.quote(name)}/} and __mize_cache__.delete(n)
     end
     self
   end

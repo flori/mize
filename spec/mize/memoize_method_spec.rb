@@ -67,7 +67,11 @@ describe Mize do
   before do
     FooBar.reset
     class ::Mize::DefaultCache
-      public :empty?
+      def empty?
+        s = 0
+        each_name { s += 1 }
+        s == 0
+      end
     end
   end
 

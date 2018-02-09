@@ -1,32 +1,41 @@
 require 'monitor'
 
-class Mize::DefaultCache < Hash
+class Mize::DefaultCache
   include MonitorMixin
 
-  private(*(instance_methods - Object.instance_methods - %i[ synchronize ]))
+  def initialize
+    @data = {}
+  end
 
   def clear(options = nil)
-    super()
+    @data.clear
+    self
   end
 
   def exist?(name, options = nil)
-    key?(name)
+    @data.key?(name)
   end
 
   def read(name, options = nil)
-    fetch(name, nil)
+    @data.fetch(name, nil)
   end
 
   def write(name, value, options = nil)
-    store(name, value)
+    @data.store(name, value)
   end
 
   def delete(name, options = nil)
-    super(name)
+    @data.delete(name)
   end
 
   def each_name(&block)
-    each_key(&block)
+    @data.each_key(&block)
+    self
+  end
+
+  def initialize_dup(other)
+    super
+    other.instance_variable_set :@data, @data.dup
   end
 
   alias prototype dup

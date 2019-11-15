@@ -21,7 +21,7 @@ module Mize::CacheMethods
 
   # Set the cache object to +cache+.
   def __mize_cache__=(cache)
-    Mize::CacheProtocol.check cache
+    Mize::CacheProtocol =~ cache
     @__mize_cache__ = cache
   end
 

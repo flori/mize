@@ -17,7 +17,7 @@ GemHadar do
     '.AppleDouble', 'tags', '.byebug_history', '.yard*', 'errors.lst'
 
 
-  dependency 'protocol'
+  dependency 'protocol', '~> 2.0'
   development_dependency 'rake'
   development_dependency 'simplecov'
   development_dependency 'rspec'

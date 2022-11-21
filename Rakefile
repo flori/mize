@@ -22,6 +22,7 @@ GemHadar do
   development_dependency 'simplecov'
   development_dependency 'rspec'
   development_dependency 'yard'
+  development_dependency 'all_images'
 
   required_ruby_version '>= 2'
 end

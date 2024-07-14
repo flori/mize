@@ -6,7 +6,7 @@ GemHadar do
   name        'mize'
   author      'Florian Frank'
   email       'flori@ping.de'
-  homepage    "http://flori.github.com/#{name}"
+  homepage    "https://github.com/flori/#{name}"
   summary     'Library that provides memoziation for methods and functions'
   description "#{summary} for Ruby."
   readme      'README.md'

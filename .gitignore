@@ -5,6 +5,8 @@
 .yard*
 Gemfile.lock
 coverage
+doc
 errors.lst
 pkg
 tags
+yard

@@ -13,11 +13,13 @@ GemHadar do
   licenses << 'MIT'
 
   test_dir    'spec'
+  yard_dir    'doc'
+
   ignore      '.*.sw[pon]', 'pkg', 'Gemfile.lock', 'coverage', '.rvmrc',
-    '.AppleDouble', 'tags', '.byebug_history', '.yard*', 'errors.lst'
+    '.AppleDouble', 'tags', '.byebug_history', '.yard*', 'yard', 'doc',
+    'errors.lst'
 
 
-  dependency 'protocol', '~> 2.0'
   development_dependency 'rake'
   development_dependency 'simplecov'
   development_dependency 'rspec'
@@ -26,30 +28,5 @@ GemHadar do
 
   required_ruby_version '>= 2'
 end
-
-namespace :yard do
-  require 'pathname'
-
-  yard_dir = Pathname.new('yard')
-
-  desc 'Create yard documentation'
-  task :create do
-    sh 'yardoc'
-  end
-
-  desc 'View the yard documentation'
-  task :view do
-    index_file = yard_dir + 'index.html'
-    File.exist?(index_file)
-    sh "open #{index_file}"
-  end
-
-  desc 'Clean the yard documentation'
-  task :clean do
-    rm_rf yard_dir
-  end
-end
-
-task :yard => %i[ yard:create yard:view ]
 
 task :default => :spec

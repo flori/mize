@@ -5,4 +5,3 @@ module Mize
     end
   end
 end
-

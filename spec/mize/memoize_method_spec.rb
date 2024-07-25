@@ -27,6 +27,12 @@ class FooBar
   end
   memoize method: :foo
 
+  def foo2(arg: 22)
+    @@foo2 ||= arg
+    @@foo2 += 1
+  end
+  memoize method: :foo2
+
   def footsie(*a)
     @@footsie ||= 0
     @@footsie += 1
@@ -39,6 +45,12 @@ class FooBar
     @@bar += 1
   end
   memoize function: :bar
+
+  def bar2(arg: 22)
+    @@bar2 ||= arg
+    @@bar2 += 1
+  end
+  memoize function: :bar2
 
   def foo_nil_stored(*a)
     @@foo_nil_stored ||= 0
@@ -97,6 +109,29 @@ describe Mize do
       expect(fb2.foo(1, 2)).to eq 6
       expect(fb1.foo(1, 2)).to eq 5
       expect(fb2.foo(1, 2)).to eq 6
+      expect(fb1.__send__(:__mize_cache__)).not_to be_empty
+      expect(fb2.__send__(:__mize_cache__)).not_to be_empty
+    end
+
+    it 'can cache methods with kargs' do
+      expect(fb1.__send__(:__mize_cache__)).to be_empty
+      expect(fb2.__send__(:__mize_cache__)).to be_empty
+      expect(fb1.foo2()).to eq 23
+      expect(fb2.foo2()).to eq 24
+      expect(fb1.foo2(arg: 123)).to eq 25
+      expect(fb2.foo2(arg: 123)).to eq 26
+      expect(fb1.foo2()).to eq 23
+      expect(fb2.foo2()).to eq 24
+      fb1.mize_cache_clear
+      fb2.mize_cache_clear
+      expect(fb1.__send__(:__mize_cache__)).to be_empty
+      expect(fb2.__send__(:__mize_cache__)).to be_empty
+      expect(fb1.foo2()).to eq 27
+      expect(fb2.foo2()).to eq 28
+      expect(fb1.foo2()).to eq 27
+      expect(fb2.foo2()).to eq 28
+      expect(fb1.foo2(arg: 123)).to eq 29
+      expect(fb2.foo2(arg: 123)).to eq 30
       expect(fb1.__send__(:__mize_cache__)).not_to be_empty
       expect(fb2.__send__(:__mize_cache__)).not_to be_empty
     end
@@ -186,6 +221,20 @@ describe Mize do
       FooBar.mize_cache_clear
       expect(fb1.bar(1, 2)).to eq 3
       expect(fb2.bar(1, 2)).to eq 3
+      expect(FooBar.__send__(:__mize_cache__)).not_to be_empty
+    end
+
+    it 'can cache functions with kargs' do
+      expect(FooBar.__send__(:__mize_cache__)).to be_empty
+      expect(fb1.bar2).to eq 23
+      expect(fb2.bar2).to eq 23
+      expect(fb1.bar2(arg: 123)).to eq 24
+      expect(fb2.bar2(arg: 123)).to eq 24
+      expect(fb1.bar2).to eq 23
+      expect(fb2.bar2).to eq 23
+      FooBar.mize_cache_clear
+      expect(fb1.bar2).to eq 25
+      expect(fb2.bar2).to eq 25
       expect(FooBar.__send__(:__mize_cache__)).not_to be_empty
     end
 

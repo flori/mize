@@ -31,11 +31,11 @@ module Mize
     class << self
       private
 
-      def compute_result(method_id, orig_method, key, context, args, freeze)
+      def compute_result(method_id, orig_method, key, context, args, kargs, freeze)
         result = orig_method.bind(context).call(*args)
         if $DEBUG
           warn "#{context.class} cached method "\
-            "#{method_id}(#{args.inspect unless args.empty?}) = "\
+            "#{method_id}(#{[ args, kargs ].inspect unless args.size + kargs.size == 0}) = "\
             "#{result.inspect} [#{__id__}]"
         end
         freeze and result.freeze rescue nil
@@ -65,14 +65,14 @@ module Mize
       method_id = method_id.to_s.to_sym
       memoize_apply_visibility method_id do
         orig_method = instance_method(method_id)
-        __send__(:define_method, method_id) do |*args|
+        __send__(:define_method, method_id) do |*args, **kargs|
           function or mc = __mize_cache__
-          key = build_key(method_id, *args)
+          key = build_key(method_id, *args, **kargs)
           if mc.exist?(key)
             mc.read(key)
           else
             result = Mize::Memoize.send(
-              :compute_result, method_id, orig_method, key, self, args, freeze
+              :compute_result, method_id, orig_method, key, self, args, kargs, freeze
             )
             if store_nil || !result.nil?
               mc.write(key, result)

@@ -1,5 +1,22 @@
 # Changes
 
+## 2024-10-17 v0.6.1
+
+* Remove deprecated Ruby versions:
+  + Deleted `ruby:2.7-alpine` and `ruby:2.6-alpine` entries
+* Update `.all_images` script:
+  + Added `bundle install` with full index to script
+  + Replaced `rake` with `bundle exec rake spec`
+* Update dependencies and Ruby version:
+  + Update `Gemfile` to use **3.5.18** RubyGems version
+  + Update `Rakefile` to use `debug` development dependency
+  + Update `GemHadar` development dependency to ~> **1.19**
+  + Add `debug` development dependency
+* Add CHANGES.md file
+* Remove `.tool-versions` file
+* Add more method documentation
+* Add license file in written form
+
 ## 2024-07-25 v0.6.0
 
 * **Added support** for keyword arguments in cached methods/functions.

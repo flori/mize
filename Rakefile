@@ -25,6 +25,7 @@ GemHadar do
   development_dependency 'rspec'
   development_dependency 'yard'
   development_dependency 'all_images'
+  development_dependency 'debug'
 
   required_ruby_version '>= 2'
 end

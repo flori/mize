@@ -5,8 +5,4 @@ if ENV['START_SIMPLECOV'].to_i == 1
   end
 end
 require 'rspec'
-begin
-  require 'byebug'
-rescue LoadError
-end
 require 'mize'

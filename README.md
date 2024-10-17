@@ -1,8 +1,21 @@
 # Mize
 
+
+## Introduction
+
+Memoization is a powerful technique for improving the performance of
+computationally expensive functions or methods by caching and reusing
+previously computed results. However, implementing memoization correctly can be
+tricky, especially when dealing with complex data structures or scenarios where
+cache invalidation is critical.
+
 ## Description
 
-Library to memoize methods or functions in Ruby.
+The `mize` library provides a simple and flexible way to memoize methods and
+functions in Ruby, making it easier for developers to write high-performance
+code without the need for manual caching implementations. In this README.md,
+we'll explore how `mize` can help you optimize your Ruby projects using
+memoization techniques.
 
 ## Installation
 
@@ -10,7 +23,7 @@ You can use rubygems to fetch the gem and install it for you:
 
     # gem install mize
 
-You can also put this line into your Gemfile
+You can also put this line into your `Gemfile`
 
     gem 'mize'
 

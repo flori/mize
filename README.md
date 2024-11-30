@@ -33,7 +33,7 @@ and bundle.
 
 Memoizes methods, that is the values depend on the receiver, like this:
 
-```
+```ruby
 class A
   @@c = 0
 
@@ -57,7 +57,7 @@ a1.foo(23) # => "foo 23 1"
 Memoizes functions, that is the values do not depend on the receiver, like
 this:
 
-```
+```ruby
 class B
   @@c = 0
 

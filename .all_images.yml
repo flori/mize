@@ -15,7 +15,7 @@ script: &script |-
   echo -e "\e[1m"
   ruby -v
   echo -e "\e[0m"
-  bundle install --full-index
+  bundle update
   bundle exec rake spec
 
 fail_fast: yes

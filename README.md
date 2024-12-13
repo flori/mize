@@ -1,6 +1,5 @@
 # Mize
 
-
 ## Introduction
 
 Memoization is a powerful technique for improving the performance of

@@ -12,13 +12,16 @@ GemHadar do
   readme      'README.md'
   licenses << 'MIT'
 
+  changelog do
+    filename 'CHANGES.md'
+  end
+
   test_dir    'spec'
   yard_dir    'doc'
 
   ignore      '.*.sw[pon]', 'pkg', 'Gemfile.lock', 'coverage', '.rvmrc',
     '.AppleDouble', 'tags', '.byebug_history', '.yard*', 'yard', 'doc',
     'errors.lst'
-
 
   development_dependency 'rake'
   development_dependency 'simplecov'

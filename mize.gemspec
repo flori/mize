@@ -17,13 +17,13 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--title".freeze, "Mize - Library that provides memoziation for methods and functions".freeze, "--main".freeze, "README.md".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2".freeze)
-  s.rubygems_version = "4.0.2".freeze
+  s.rubygems_version = "4.0.22".freeze
   s.summary = "Library that provides memoziation for methods and functions".freeze
   s.test_files = ["spec/mize/global_clear_spec.rb".freeze, "spec/mize/memoize_method_spec.rb".freeze, "spec/mize/memoize_reload_spec.rb".freeze, "spec/mize/version_spec.rb".freeze, "spec/spec_helper.rb".freeze]
 
   s.specification_version = 4
 
-  s.add_development_dependency(%q<gem_hadar>.freeze, [">= 2.16.3".freeze])
+  s.add_development_dependency(%q<gem_hadar>.freeze, [">= 2.18.0".freeze])
   s.add_development_dependency(%q<rake>.freeze, [">= 0".freeze])
   s.add_development_dependency(%q<simplecov>.freeze, [">= 0".freeze])
   s.add_development_dependency(%q<rspec>.freeze, [">= 0".freeze])

@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.version = "0.7.0".freeze
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
+  s.metadata = { "source_code_uri" => "https://github.com/flori/mize" } if s.respond_to? :metadata=
   s.require_paths = ["lib".freeze]
   s.authors = ["Florian Frank".freeze]
   s.date = "1980-01-02"
@@ -23,7 +24,7 @@ Gem::Specification.new do |s|
 
   s.specification_version = 4
 
-  s.add_development_dependency(%q<gem_hadar>.freeze, [">= 2.19.2".freeze])
+  s.add_development_dependency(%q<gem_hadar>.freeze, [">= 2.20.1".freeze])
   s.add_development_dependency(%q<rake>.freeze, [">= 0".freeze])
   s.add_development_dependency(%q<simplecov>.freeze, [">= 0".freeze])
   s.add_development_dependency(%q<rspec>.freeze, [">= 0".freeze])

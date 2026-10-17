@@ -7,6 +7,7 @@ GemHadar do
   author      'Florian Frank'
   email       'flori@ping.de'
   homepage    "https://github.com/flori/#{name}"
+  metadata    'source_code_uri', homepage
   summary     'Library that provides memoization for methods and functions'
   description "#{summary} for Ruby."
   readme      'README.md'

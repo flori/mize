@@ -178,6 +178,10 @@ Any object that `include Mize::CacheProtocol` and implements `read`,
 `write`, `exist?`, `delete`, `clear`, `each_name`, and `prototype` will
 work.
 
+## Documentation
+
+Complete API documentation is available at: [GitHub.io](https://flori.github.io/mize/)
+
 ## Repository
 
 * https://github.com/flori/mize

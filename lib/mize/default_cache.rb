@@ -1,10 +1,12 @@
-require 'monitor'
-
 # The default in-memory cache backend.
 #
-# A thread-safe (via +MonitorMixin+) +Hash+ wrapper that implements just
-# enough of the Mize cache protocol to back memoization out of the box:
-# +read+ / +write+ / +exist?+ / +delete+ / +clear+ / +each_name+.
+# A plain +Hash+ wrapper that implements just enough of the Mize cache
+# protocol to back memoization out of the box: +read+ / +write+ /
+# +exist?+ / +delete+ / +clear+ / +each_name+.
+#
+# Individual operations are atomic under the GVL. For multi-step
+# atomicity (e.g. check→compute→write), wrap the call in
+# +Mize.synchronize+.
 #
 # Because it is backed by a plain +Hash+, entries are never evicted until you
 # clear the cache explicitly (or the object is garbage-collected). For
@@ -12,7 +14,6 @@ require 'monitor'
 # +Mize::CacheProtocol+ implementation via +Mize.configure+.
 class Mize::DefaultCache
   include Mize::CacheProtocol
-  include MonitorMixin
 
   # Create an empty cache.
   #

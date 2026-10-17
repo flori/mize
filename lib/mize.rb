@@ -31,6 +31,41 @@ module Mize
     # duplicate +memoize+ calls can be detected and conflicting options
     # rejected. Cleared on +Mize::Reload#reload+.
     attr_accessor :wrapped
+
+    # Acquire the global Mize mutex for the duration of +block+.
+    #
+    # Exposes the internal +MUTEX+ under a stable API so callers can make
+    # a sequence of memoized calls atomic with respect to other threads:
+    #
+    # @example
+    #   Mize.synchronize do
+    #     obj.foo(42)
+    #     obj.bar(42)
+    #   end
+    #
+    # The hot path (individual memoized calls) is lock-free by design; use
+    # this when you need the check→compute→write cycle to be indivisible.
+    #
+    # MRI forbids +Mutex#synchronize+ from a trap context (signal handlers
+    # and GC finalizers), raising +ThreadError: can't be called from trap
+    # context+. This is an intentional, still-current design decision (see
+    # DevMeeting-2025-07-10 on
+    # https://bugs.ruby-lang.org/issues/19473), not a bug being patched, so
+    # this method rescues that specific error and runs +block+ without the
+    # lock rather than raising into a finalizer. Other +ThreadError+s (e.g.
+    # recursive locking) are re-raised.
+    #
+    # @yield Executes the block while holding the mutex.
+    # @return [Object] The return value of +block+.
+    def synchronize(&block)
+      MUTEX.synchronize(&block)
+    rescue ThreadError => e
+      if e.message.include?("trap context")
+        block.()
+      else
+        raise e
+      end
+    end
   end
   self.wrapped = {}
 end

@@ -127,8 +127,8 @@ memoized entries automatically.
 
 ## Custom cache backend
 
-The default backend is an in-memory `Hash` guarded by a `MonitorMixin`.
-Swap in your own (e.g. Redis, Memcached) by implementing the
+The default backend is a plain in-memory `Hash`. Swap in your own
+(e.g. Redis, Memcached) by implementing the
 `Mize::CacheProtocol` interface:
 
 ```ruby

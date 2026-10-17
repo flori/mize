@@ -8,14 +8,14 @@ module Mize::Reload
   # Run the parent +reload+ (if any), then clear Mize's bookkeeping and the
   # object's memoization cache.
   #
-  # The whole sequence is serialized on +Mize::MUTEX+. +Mize.wrapped+ is reset
-  # so a re-memoization with different options is allowed, and
+  # The whole sequence is serialized on +Mize.synchronize+. +Mize.wrapped+ is
+  # reset so a re-memoization with different options is allowed, and
   # +mize_cache_clear+ drops every cached value for this object.
   #
   # @return [Object] The result of the parent +reload+ if one was defined,
   #   otherwise +self+.
   def reload(*)
-    Mize::MUTEX.synchronize do
+    Mize.synchronize do
       result = self
       if defined? super
         result = super

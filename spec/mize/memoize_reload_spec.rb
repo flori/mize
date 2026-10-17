@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 class Foo
   def self.reset
     @@foo = nil

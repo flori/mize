@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 class FooBar
   class << self
     def reset

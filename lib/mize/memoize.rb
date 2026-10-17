@@ -38,7 +38,7 @@ module Mize
     #     memoize method: :expensive, freeze: true
     #   end
     def memoize(method: nil, function: nil, freeze: false, store_nil: true)
-      Mize::MUTEX.synchronize do
+      Mize.synchronize do
         if method && function
           raise ArgumentError, 'memoize a method xor a function'
         elsif method

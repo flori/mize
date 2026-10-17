@@ -16,6 +16,10 @@ GemHadar do
     filename 'CHANGES.md'
   end
 
+  github_workflows(
+    'static.yml' => { }
+  )
+
   test_dir    'spec'
   yard_dir    'doc'
 

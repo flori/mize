@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = "Library that provides memoziation for methods and functions for Ruby.".freeze
   s.email = "flori@ping.de".freeze
   s.extra_rdoc_files = ["README.md".freeze, "lib/mize.rb".freeze, "lib/mize/cache_methods.rb".freeze, "lib/mize/cache_protocol.rb".freeze, "lib/mize/configure.rb".freeze, "lib/mize/default_cache.rb".freeze, "lib/mize/global_clear.rb".freeze, "lib/mize/memoize.rb".freeze, "lib/mize/railtie.rb".freeze, "lib/mize/reload.rb".freeze, "lib/mize/version.rb".freeze]
-  s.files = [".all_images.yml".freeze, ".gitignore".freeze, ".rspec".freeze, ".travis.yml".freeze, "CHANGES.md".freeze, "Gemfile".freeze, "LICENSE".freeze, "README.md".freeze, "Rakefile".freeze, "VERSION".freeze, "config/broken_config.yml".freeze, "config/config.yml".freeze, "lib/mize.rb".freeze, "lib/mize/cache_methods.rb".freeze, "lib/mize/cache_protocol.rb".freeze, "lib/mize/configure.rb".freeze, "lib/mize/default_cache.rb".freeze, "lib/mize/global_clear.rb".freeze, "lib/mize/memoize.rb".freeze, "lib/mize/railtie.rb".freeze, "lib/mize/reload.rb".freeze, "lib/mize/version.rb".freeze, "mize.gemspec".freeze, "spec/mize/global_clear_spec.rb".freeze, "spec/mize/memoize_method_spec.rb".freeze, "spec/mize/memoize_reload_spec.rb".freeze, "spec/mize/version_spec.rb".freeze, "spec/spec_helper.rb".freeze]
+  s.files = [".all_images.yml".freeze, ".github/workflows/static.yml".freeze, ".gitignore".freeze, ".rspec".freeze, ".travis.yml".freeze, "CHANGES.md".freeze, "Gemfile".freeze, "LICENSE".freeze, "README.md".freeze, "Rakefile".freeze, "VERSION".freeze, "config/broken_config.yml".freeze, "config/config.yml".freeze, "lib/mize.rb".freeze, "lib/mize/cache_methods.rb".freeze, "lib/mize/cache_protocol.rb".freeze, "lib/mize/configure.rb".freeze, "lib/mize/default_cache.rb".freeze, "lib/mize/global_clear.rb".freeze, "lib/mize/memoize.rb".freeze, "lib/mize/railtie.rb".freeze, "lib/mize/reload.rb".freeze, "lib/mize/version.rb".freeze, "mize.gemspec".freeze, "spec/mize/global_clear_spec.rb".freeze, "spec/mize/memoize_method_spec.rb".freeze, "spec/mize/memoize_reload_spec.rb".freeze, "spec/mize/version_spec.rb".freeze, "spec/spec_helper.rb".freeze]
   s.homepage = "https://github.com/flori/mize".freeze
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--title".freeze, "Mize - Library that provides memoziation for methods and functions".freeze, "--main".freeze, "README.md".freeze]
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
 
   s.specification_version = 4
 
-  s.add_development_dependency(%q<gem_hadar>.freeze, [">= 2.18.0".freeze])
+  s.add_development_dependency(%q<gem_hadar>.freeze, [">= 2.19.2".freeze])
   s.add_development_dependency(%q<rake>.freeze, [">= 0".freeze])
   s.add_development_dependency(%q<simplecov>.freeze, [">= 0".freeze])
   s.add_development_dependency(%q<rspec>.freeze, [">= 0".freeze])

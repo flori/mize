@@ -1,15 +1,21 @@
 # Changes
 
-## 2026-10-17 v0.7.0
+## 2026-10-18 v0.7.0
 
 ### Breaking
 - Removed support for Ruby **3.0** from the CI test matrix.
+- Removed the vestigial `MonitorMixin` inclusion from `Mize::DefaultCache`, as
+  the class is now a plain `Hash` wrapper relying on the GVL for atomicity.
 
 ### Features
+- Added `Mize.synchronize` API to expose the internal `MUTEX` for atomic
+  multi-step operations, with specific handling for `ThreadError` in trap
+  contexts.
 - Added a GitHub Actions workflow (`static.yml`) to generate YARD documentation
   and deploy it to GitHub Pages.
 - Added `changelog` configuration to the `Rakefile` to enable automated
   generation of `CHANGES.md`.
+- Added `source_code_uri` metadata to the gemspec.
 
 ### Improvements
 - Added comprehensive YARD documentation to all library modules (`Mize`,
@@ -20,18 +26,28 @@
   constant-level YARD comments.
 - Replaced manual `SimpleCov` initialization in `spec/spec_helper.rb` with
   `gem_hadar/simplecov` and added error handling for missing dependencies.
+- Migrated internal `Mize::MUTEX.synchronize` calls in `global_clear.rb`,
+  `memoize.rb`, and `reload.rb` to use the new `Mize.synchronize` API.
 - Removed the obsolete `.utilsrc` configuration file.
+- Removed unused `config/config.yml` and `config/broken_config.yml` files.
+- Corrected the typo "memoziation" to "memoization" in the gem summary and
+  description.
 
 ### Build & CI
 - Updated CI configuration to support Ruby **4.0** by adding `yaml-dev` and
   `openssl-dev` dependencies and updating the bundler setup.
 - Aligned `.all_images.yml` with standard multi-image configuration, including
   `before`/`after` hooks for `Gemfile.lock` cleanup and result echoing.
-- Updated `gem_hadar` development dependency to **2.18.0** and later to
-  **2.19.2**.
+- Updated `gem_hadar` development dependency to **2.20.1**.
 - Updated `rubygems_version` in the gemspec to **4.0.22**.
 - Removed `bundle update --all` from the CI script in favor of `bundle install
   --jobs=$(getconf _NPROCESSORS_ONLN)`.
+
+### Testing
+- Added `spec/mize_spec.rb` to verify `Mize.synchronize` block return values
+  and lock identity.
+- Added `-rspec_helper` to `.rspec` and removed explicit `require
+  'spec_helper'` statements from spec files.
 
 ### Documentation
 - Restructured `README.md` to cover the full API surface, including options
@@ -41,6 +57,10 @@
   fenced code blocks with language tags.
 - Removed the redundant "Download" section, folding the repository link into
   the "Repository" section.
+- Added a "Documentation" section to `README.md` linking to the hosted API
+  documentation.
+- Updated `README.md` to reflect the removal of `MonitorMixin` from the default
+  cache backend description.
 
 ## 2024-10-17 v0.6.1
 

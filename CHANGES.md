@@ -1,5 +1,47 @@
 # Changes
 
+## 2026-10-17 v0.7.0
+
+### Breaking
+- Removed support for Ruby **3.0** from the CI test matrix.
+
+### Features
+- Added a GitHub Actions workflow (`static.yml`) to generate YARD documentation
+  and deploy it to GitHub Pages.
+- Added `changelog` configuration to the `Rakefile` to enable automated
+  generation of `CHANGES.md`.
+
+### Improvements
+- Added comprehensive YARD documentation to all library modules (`Mize`,
+  `Mize::Memoize`, `Mize::CacheMethods`, `Mize::CacheProtocol`,
+  `Mize::Configure`, `Mize::DefaultCache`, `Mize::GlobalClear`,
+  `Mize::Railtie`, and `Mize::Reload`).
+- Improved the generated `lib/mize/version.rb` template with module-level and
+  constant-level YARD comments.
+- Replaced manual `SimpleCov` initialization in `spec/spec_helper.rb` with
+  `gem_hadar/simplecov` and added error handling for missing dependencies.
+- Removed the obsolete `.utilsrc` configuration file.
+
+### Build & CI
+- Updated CI configuration to support Ruby **4.0** by adding `yaml-dev` and
+  `openssl-dev` dependencies and updating the bundler setup.
+- Aligned `.all_images.yml` with standard multi-image configuration, including
+  `before`/`after` hooks for `Gemfile.lock` cleanup and result echoing.
+- Updated `gem_hadar` development dependency to **2.18.0** and later to
+  **2.19.2**.
+- Updated `rubygems_version` in the gemspec to **4.0.22**.
+- Removed `bundle update --all` from the CI script in favor of `bundle install
+  --jobs=$(getconf _NPROCESSORS_ONLN)`.
+
+### Documentation
+- Restructured `README.md` to cover the full API surface, including options
+  (`freeze:`, `store_nil:`), keyword arguments, targeted cache clearing, global
+  cache, custom cache backends, and Rails integration.
+- Replaced the introductory text with a concise description and added proper
+  fenced code blocks with language tags.
+- Removed the redundant "Download" section, folding the repository link into
+  the "Repository" section.
+
 ## 2024-10-17 v0.6.1
 
 * Remove deprecated Ruby versions:

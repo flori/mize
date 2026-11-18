@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-# stub: mize 0.7.0 ruby lib
+# stub: mize 0.8.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "mize".freeze
-  s.version = "0.7.0".freeze
+  s.version = "0.8.0".freeze
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "source_code_uri" => "https://github.com/flori/mize" } if s.respond_to? :metadata=

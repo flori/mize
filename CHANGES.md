@@ -1,13 +1,23 @@
 # Changes
 
+## 2026-11-19 v0.8.0
+
+### Build & CI
+
+- Bumped the `gem_hadar` development dependency constraint to `>= 2.24.1`.
+- Updated the `rubygems_version` in `mize.gemspec` to `4.0.24`.
+- Removed Vim modelines from `Gemfile` and `Rakefile`.
+
 ## 2026-10-18 v0.7.0
 
 ### Breaking
+
 - Removed support for Ruby **3.0** from the CI test matrix.
 - Removed the vestigial `MonitorMixin` inclusion from `Mize::DefaultCache`, as
   the class is now a plain `Hash` wrapper relying on the GVL for atomicity.
 
 ### Features
+
 - Added `Mize.synchronize` API to expose the internal `MUTEX` for atomic
   multi-step operations, with specific handling for `ThreadError` in trap
   contexts.
@@ -18,6 +28,7 @@
 - Added `source_code_uri` metadata to the gemspec.
 
 ### Improvements
+
 - Added comprehensive YARD documentation to all library modules (`Mize`,
   `Mize::Memoize`, `Mize::CacheMethods`, `Mize::CacheProtocol`,
   `Mize::Configure`, `Mize::DefaultCache`, `Mize::GlobalClear`,
@@ -34,6 +45,7 @@
   description.
 
 ### Build & CI
+
 - Updated CI configuration to support Ruby **4.0** by adding `yaml-dev` and
   `openssl-dev` dependencies and updating the bundler setup.
 - Aligned `.all_images.yml` with standard multi-image configuration, including
@@ -44,12 +56,14 @@
   --jobs=$(getconf _NPROCESSORS_ONLN)`.
 
 ### Testing
+
 - Added `spec/mize_spec.rb` to verify `Mize.synchronize` block return values
   and lock identity.
 - Added `-rspec_helper` to `.rspec` and removed explicit `require
   'spec_helper'` statements from spec files.
 
 ### Documentation
+
 - Restructured `README.md` to cover the full API surface, including options
   (`freeze:`, `store_nil:`), keyword arguments, targeted cache clearing, global
   cache, custom cache backends, and Rails integration.
